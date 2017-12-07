@@ -5,6 +5,7 @@ defmodule COUNTTest do
   test "counts words" do
     assert COUNT.count("See Spot run.") == %{"SEE" => 1, "SPOT" => 1, "RUN" => 1}
     assert COUNT.count("Run, Spot, run.") == %{"RUN" => 2, "SPOT" => 1}
+    assert COUNT.count("foo bar ") == %{"FOO" => 1, "BAR" => 1}
   end
 
   test "update existing counts" do
@@ -12,6 +13,10 @@ defmodule COUNTTest do
   end
 
   test "counts words from a file" do
-    assert COUNT.count_file("./inputs/test.txt") == %{"SEE" => 1, "SPOT" => 2, "RUN" => 3}
+    assert COUNT.count_file("./test/test_data/spot.txt") == %{"SEE" => 1, "SPOT" => 2, "RUN" => 3}
+  end
+
+  test "sorts counts" do
+    assert COUNT.sort_counts(%{"FOO" => 10, "BAR" => 1, "BAZ" => 5}) == [{"FOO", 10}, {"BAZ", 5}, {"BAR", 1}]
   end
 end
