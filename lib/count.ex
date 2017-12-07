@@ -1,4 +1,10 @@
-defmodule WordCounter do
+defmodule COUNT do
+  def count_file(path) do
+    path
+    |> File.stream!
+    |> Enum.reduce(%{}, fn(x, acc) -> count(x, acc) end)
+  end
+
   def count(passage, existing_counts \\ %{}) do
     passage
     |> String.replace(~r/[^\w ]/, "")
