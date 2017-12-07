@@ -1,8 +1,14 @@
 defmodule COUNT do
-  def count_file(path) do
+  def count_files(path_wildcard) do
+    path_wildcard
+    |> Path.wildcard
+    |> Enum.reduce(%{}, fn(x, acc) -> count_file(x, acc) end)
+  end
+
+  def count_file(path, existing_counts \\ %{}) do
     path
     |> File.stream!
-    |> Enum.reduce(%{}, fn(x, acc) -> count(x, acc) end)
+    |> Enum.reduce(existing_counts, fn(x, acc) -> count(x, acc) end)
   end
 
   def count(passage, existing_counts \\ %{}) do
