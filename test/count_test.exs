@@ -18,7 +18,6 @@ defmodule COUNT.Test do
 
   test "count words from multiple files" do
     assert COUNT.count_files("test/test_data/*.txt") ==  %{"SEE" => 1, "SPOT" => 2, "RUN" => 3, "FOO" => 1, "BAR" => 1}
-    assert COUNT.pcount_files("test/test_data/*.txt") ==  %{"SEE" => 1, "SPOT" => 2, "RUN" => 3, "FOO" => 1, "BAR" => 1}
   end
 
   test "sorts counts" do
@@ -31,17 +30,6 @@ defmodule COUNT.Test do
 
   @tag :timing
   test "counting lots of files" do
-    # (1..10)
-    # |> Enum.each(fn _ ->
-      COUNT.count_files("data/*.txt")
-    # end)
-  end
-
-  @tag :timing
-  test "counting lots of files concurrently" do
-    # (1..10)
-    # |> Enum.each(fn _ ->
-      COUNT.pcount_files("data/*.txt")
-    # end)
+    COUNT.count_files("data/*.txt")
   end
 end
