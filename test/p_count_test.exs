@@ -10,4 +10,9 @@ defmodule P_COUNT.Test do
   test "counting lots of files concurrently" do
     P_COUNT.count_files("data/*.txt")
   end
+
+  @tag :timing
+  test "counting a big file" do
+    P_COUNT.count_file("data/war_peace_text.txt")
+  end
 end

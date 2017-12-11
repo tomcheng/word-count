@@ -32,4 +32,9 @@ defmodule COUNT.Test do
   test "counting lots of files" do
     COUNT.count_files("data/*.txt")
   end
+
+  @tag :timing
+  test "counting a big file" do
+    COUNT.count_file("data/war_peace_text.txt")
+  end
 end
