@@ -1,5 +1,5 @@
 defmodule COUNT do
-  def count_files(path_wildcard) do
+  def count_files(path_wildcard \\ "data/*") do
     path_wildcard
     |> Path.wildcard
     |> Enum.reduce(%{}, fn path, counts -> merge_counts(counts, count_file(path)) end)

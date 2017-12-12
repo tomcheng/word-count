@@ -7,8 +7,18 @@ defmodule P_COUNT.Test do
   end
 
   @tag :timing
-  test "counting lots of files concurrently" do
-    P_COUNT.count_files("data/*.txt")
+  test "counting lots of files (parallelized by file)" do
+    P_COUNT.count_files
+  end
+
+  @tag :timing
+  test "counting lots of files (parallelized by chunk)" do
+    P_COUNT.count_files_by_chunk
+  end
+
+  @tag :timing
+  test "counting lots of files (parallelized by chunk and file)" do
+    P_COUNT.count_files_by_chunk_and_file
   end
 
   @tag :timing
